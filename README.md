@@ -2,7 +2,7 @@
 
 Repository for the "NodeJS para Iniciantes" course by #NodeBR.
 
-[Link do curso](https://cursos.erickwendel.com/p/node-js-para-iniciantes-nodebr)
+[Course link](https://cursos.erickwendel.com/p/node-js-para-iniciantes-nodebr)
 
 ## Modules
 
