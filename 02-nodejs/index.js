@@ -4,6 +4,10 @@
 // 2 - Obter o telefone de um usuário a partir de seu ID
 // 3 - Obter o endereço do usuário pelo ID
 
+// Importar módulo para converter funções com callback em Promises
+const util = require('util');
+const obterEnderecoAsync = util.promisify(obterEndereco);
+
 function obterUsuario () {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -52,7 +56,21 @@ usuarioPromise
             })
     })
     .then(resultado => {
-        console.log('resultado', resultado);
+        const endereco = obterEnderecoAsync(resultado.usuario.id);
+        return endereco.then(result => {
+            return {
+                usuario: resultado.usuario,
+                telefone: resultado.telefone,
+                endereco: result
+            }
+        })
+    })
+    .then(resultado => {
+        console.log(`
+            Nome: ${resultado.usuario.nome}
+            Endereço: ${resultado.endereco.rua}, ${resultado.endereco.numero}
+            Telefone: (${resultado.telefone.ddd}) ${resultado.telefone.telefone}
+        `);
     })
     .catch(erro => {
         console.log('erro', erro);
