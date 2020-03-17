@@ -27,7 +27,7 @@ async function main () {
 
         console.log('names', names);
     } catch (error) {
-        console.log('error', error);
+        console.error('error', error);
     }
 }
 
