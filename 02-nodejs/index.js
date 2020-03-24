@@ -5,8 +5,8 @@
 // 3 - Obter o endereço do usuário pelo ID
 
 // Importar módulo para converter funções com callback em Promises
-const util = require('util');
-const obterEnderecoAsync = util.promisify(obterEndereco);
+const util = require('util')
+const obterEnderecoAsync = util.promisify(obterEndereco)
 
 function obterUsuario () {
     return new Promise((resolve, reject) => {
@@ -15,8 +15,8 @@ function obterUsuario () {
                 id: 1,
                 nome: 'Aladin',
                 dataNascimento: new Date()
-            });
-        }, 1000);
+            })
+        }, 1000)
     })
 }
 
@@ -26,9 +26,9 @@ function obterTelefone (idUsuario) {
             return resolve({
                 telefone: '119925',
                 ddd: 11
-            });
-        }, 2000);
-    });
+            })
+        }, 2000)
+    })
 }
 
 function obterEndereco (idUsuario, callback) {
@@ -36,34 +36,34 @@ function obterEndereco (idUsuario, callback) {
         return callback(null, {
             rua: 'dos bobos',
             numero: 0
-        });
-    }, 2000);
+        })
+    }, 2000)
 }
 
 async function main () {
     try {
-        console.time('medida-promise');
+        console.time('medida-promise')
 
-        const usuario = await obterUsuario();
+        const usuario = await obterUsuario()
 
         const resultado = await Promise.all([
             obterTelefone(usuario.id),
             obterEnderecoAsync(usuario.id)
-        ]);
+        ])
 
-        const telefone = resultado[0];
-        const endereco = resultado[1];
+        const telefone = resultado[0]
+        const endereco = resultado[1]
 
         console.log(`
             Nome: ${usuario.nome}
             Endereço: ${endereco.rua}, ${endereco.numero}
             Telefone: (${telefone.ddd}) ${telefone.telefone}
-        `);
+        `)
 
-        console.timeEnd('medida-promise');
+        console.timeEnd('medida-promise')
     } catch (erro) {
-        console.error('Deu ruim', error);
+        console.error('Deu ruim', error)
     }
 }
 
-main();
+main()
