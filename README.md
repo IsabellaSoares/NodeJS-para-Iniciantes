@@ -24,7 +24,8 @@ Repository for the "NodeJS para Iniciantes" course by #NodeBR.
 5. Databases - Our Multi-database project
 6. Introduction to Postgres and Relational Banks
   - Sequelize
-7. Introduction to MongoDB and Non-Relational Banks (NoSQL)
+7. Introduction to MongoDB and Non-Relational Databases (NoSQL)
+  - Mongoose
 8. Refactoring our project for multi-schema databases
 9. Node.js and Web Services - Creating professional services with Hapi.js
 10. Service documentation with Swagger
