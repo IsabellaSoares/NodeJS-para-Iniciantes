@@ -1,6 +1,15 @@
 const assert = require('assert')
-const MongoDb = require('./../src/db/strategies/mongoDbStrategy')
+const MongoDb = require('./../src/db/strategies/mongodb/mongoDbStrategy')
+const HeroSchema = require('./../src/db/strategies/mongodb/schemas/heroSchema')
 const Context = require('./../src/db/strategies/base/contextStrategy')
+
+// 1o alterar criar pasta mongodb
+// 2o mover mongodbStrategy para mongodb
+// 3o modificar classe do mongodbStrategy
+// 4o modificar criar schema em mongodb/schemas
+// 6o modificar teste fazendo conexão direto do MongoDB
+// 5o modificar teste passando para o MongoDB
+
 const MOCK_HEROI_CADASTRAR = {
     nome: 'Gaviao Negro',
     poder: 'flexas'
@@ -11,11 +20,13 @@ const MOCK_HEROI_ATUALIZAR = {
     poder: 'força'
 };
 let MOCK_HEROI_ATUALIZAR_ID = '';
-const context = new Context(new MongoDb())
+let context = {}
 
 describe('MongoDB Suite de testes', function () {
     this.beforeAll(async () => {
-        await context.connect()
+        const connection = MongoDb.connect()
+        context = new Context(new MongoDb(connection, HeroSchema))
+
         const result = await context.create(MOCK_HEROI_ATUALIZAR)
         MOCK_HEROI_ATUALIZAR_ID = result._id
     })
